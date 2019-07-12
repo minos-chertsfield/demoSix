@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/headLink"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <EditText
+        android:id="@+id/uid"
+        android:hint="用户名"
+        android:layout_marginVertical="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="250dp"
+        android:layout_marginBottom="5dp"
+        android:hint="密码"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/realName"
+        android:hint="真实姓名"
+        android:layout_marginVertical="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/birth"
+        android:hint="出生日期"
+        android:layout_marginVertical="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:focusable="false"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:hint="邮箱"
+        android:layout_marginVertical="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/address"
+        android:hint="地址"
+        android:layout_marginVertical="450dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"/>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="200dp"
+        android:layout_marginVertical="500dp"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="注册"
+        android:background="#66ff2266"
+        android:layout_centerHorizontal="true"/>
+
+
+
+</RelativeLayout>
