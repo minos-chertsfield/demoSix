@@ -24,9 +24,6 @@ import retrofit2.Retrofit;
  */
 public class RegisterPresenter {     //注册提供器
 
-    public static String BASE_URL = "http://192.168.180.247:8080/";    //服务器地址
-    Retrofit retrofit;
-
     private User user;
     private Handler handler;
     private RegisterView registerView;    //注册视图类对象
