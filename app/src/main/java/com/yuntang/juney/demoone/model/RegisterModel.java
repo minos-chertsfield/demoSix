@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RegisterModel implements IRegisterModel{    //注册模型接口实现类
 
-    public static String BASE_URL = "http://127.0.0.1:8088/";    //服务器地址
+    public static String BASE_URL = "http://192.168.180.247:8080/";    //服务器地址
     Retrofit retrofit;
 
     @Override
@@ -45,7 +45,7 @@ public class RegisterModel implements IRegisterModel{    //注册模型接口实
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
-                            System.out.println(response.body().string());    //输出信息
+                            System.out.println(response.body().string());    //输出服务器返回信息
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
