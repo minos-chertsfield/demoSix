@@ -15,6 +15,7 @@ public interface IRegisterModel {    //注册模型接口
      */
     void doRegister(User user, onRegisterListener onRegisterListener);
 
+
     interface onRegisterListener {      //监听注册反馈
 
         void regiterSuccess(String feedback);     //注册成功

@@ -2,10 +2,20 @@ package com.yuntang.juney.demoone.presenter;
 
 import android.os.Handler;
 
+import com.google.gson.Gson;
 import com.yuntang.juney.demoone.bean.User;
 import com.yuntang.juney.demoone.model.RegisterModel;
+import com.yuntang.juney.demoone.utils.RegisterApiService;
 import com.yuntang.juney.demoone.view.RegisterView;
 
+import java.io.IOException;
+
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**
@@ -13,6 +23,9 @@ import com.yuntang.juney.demoone.view.RegisterView;
  * on 2019/7/12
  */
 public class RegisterPresenter {     //注册提供器
+
+    public static String BASE_URL = "http://192.168.180.247:8080/";    //服务器地址
+    Retrofit retrofit;
 
     private User user;
     private Handler handler;
@@ -31,24 +44,27 @@ public class RegisterPresenter {     //注册提供器
 
     public void doRegister() {    //注册
         user = new User();
+        user.setUid(registerView.getUid());   //从视图层获取用户名
+        user.setPassword(registerView.getPassword());   //从视图层获取密码
+
 
         registerModel.doRegister(user, new RegisterModel.onRegisterListener() {
             @Override
-            public void regiterSuccess(String feedback) {   //注册成功
+            public void regiterSuccess(final String feedback) {   //注册成功
             handler.post(new Runnable() {
                 @Override
-                public void run() {
-
+                public void run() {     //注册成功后进行处理
+                    registerView.showSuccessMsg(user);
                 }
             });
             }
 
             @Override
-            public void registerFail(String feedback) {    //注册失败
+            public void registerFail(final String feedback) {    //注册失败
             handler.post(new Runnable() {
                 @Override
-                public void run() {
-
+                public void run() {        //注册失败后进行处理
+                    registerView.showFailMsg(feedback);
                 }
             });
             }
