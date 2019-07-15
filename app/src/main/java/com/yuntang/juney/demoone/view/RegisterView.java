@@ -13,6 +13,7 @@ public interface RegisterView {   //注册功能接口
     String getRealName();
     String getPassword();
     String getAddress();
+    String getMobile();
     String getBirth();
     String getEmail();
     String getHeadLink();

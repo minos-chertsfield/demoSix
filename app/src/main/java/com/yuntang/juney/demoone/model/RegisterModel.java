@@ -25,12 +25,10 @@ public class RegisterModel implements IRegisterModel{    //注册模型接口实
     Retrofit retrofit;
 
     @Override
-    public void doRegister(final User user, onRegisterListener onRegisterListener) {
+    public void doRegister(final User user, final onRegisterListener onRegisterListener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                user.getUid();
-                user.getPassword();
                 Gson gson = new Gson();
                 String obj = gson.toJson(user);     //转换成Json格式
                 System.out.println(obj);
@@ -45,7 +43,9 @@ public class RegisterModel implements IRegisterModel{    //注册模型接口实
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
-                            System.out.println(response.body().string());    //输出服务器返回信息
+                            if (response.body().string() != null){
+                                System.out.println(response.body().string());    //输出服务器返回信息
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

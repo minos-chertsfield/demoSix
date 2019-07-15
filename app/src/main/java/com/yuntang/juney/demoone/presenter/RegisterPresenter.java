@@ -1,6 +1,8 @@
 package com.yuntang.juney.demoone.presenter;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 import com.yuntang.juney.demoone.bean.User;
@@ -41,8 +43,15 @@ public class RegisterPresenter {     //注册提供器
 
     public void doRegister() {    //注册
         user = new User();
+        user.setMac(registerView.getMac());     //从视图层获取硬件地址
         user.setUid(registerView.getUid());   //从视图层获取用户名
         user.setPassword(registerView.getPassword());   //从视图层获取密码
+        user.setRealName(registerView.getRealName());   //从视图层获取真实姓名
+        user.setBirth(registerView.getBirth());      //从视图层获取出生日期
+        user.setEmail(registerView.getEmail());     //从视图层获取电子邮箱
+        user.setMobile(registerView.getMobile());    //从视图层获取电话号码
+        user.setAddress(registerView.getAddress());     //从视图层获取地址
+        user.setHeadLink(registerView.getHeadLink());    //从视图层获取图像数据
 
 
         registerModel.doRegister(user, new RegisterModel.onRegisterListener() {

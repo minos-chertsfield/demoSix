@@ -15,6 +15,15 @@ public class User {    //用户类
     private String birth;    //用户生日
     private String email;    //用户电子邮箱
     private String headLink;    //用户头像链接
+    private String mobile;      //用户手机号码
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public String getMac() {
         return mac;

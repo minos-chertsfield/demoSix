@@ -1,5 +1,7 @@
 package com.yuntang.juney.demoone.view;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,16 +13,19 @@ import android.widget.Toast;
 import com.yuntang.juney.demoone.R;
 import com.yuntang.juney.demoone.bean.User;
 import com.yuntang.juney.demoone.presenter.RegisterPresenter;
+import com.yuntang.juney.demoone.utils.Mac;
 
 /**
  * 用户注册功能
  */
 public class RegisterActivity extends AppCompatActivity implements RegisterView, View.OnClickListener {
 
+    SharedPreferences preferences = null;    //声明SharedPreferences的对象
     private ImageView headLink;
     private EditText uid;
     private EditText password;
     private EditText realName;
+    private EditText mobile;
     private EditText birth;
     private EditText email;
     private EditText address;
@@ -45,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
         uid = (EditText) findViewById(R.id.uid);
         password = (EditText) findViewById(R.id.password);
         realName = (EditText) findViewById(R.id.realName);
+        mobile = (EditText) findViewById(R.id.mobile);
         birth = (EditText) findViewById(R.id.birth);
         email = (EditText) findViewById(R.id.email);
         address = (EditText) findViewById(R.id.address);
@@ -62,7 +68,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
 
     @Override
     public String getMac() {
-        return null;
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Mac mac = new Mac();
+        return mac.GenerateRandom(preferences);
     }
 
     @Override
@@ -83,6 +91,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
     @Override
     public String getAddress() {     //从当前视图获取地址
         return address.getText().toString().trim();
+    }
+
+    @Override
+    public String getMobile() {
+        return mobile.getText().toString().trim();
     }
 
     @Override
