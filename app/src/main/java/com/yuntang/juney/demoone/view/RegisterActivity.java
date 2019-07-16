@@ -1,5 +1,6 @@
 package com.yuntang.juney.demoone.view;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -114,12 +115,14 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
     }
 
     @Override
-    public void showSuccessMsg(User user) {      //显示注册成功的消息
-        Toast.makeText(this, user.getUid(), Toast.LENGTH_SHORT).show();
+    public void showSuccessMsg() {      //显示注册成功的消息
+        Toast.makeText(this, "注册成功！", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);  //启动登录功能页
     }
 
     @Override
-    public void showFailMsg(String feedback) {    //显示注册失败的消息
-        Toast.makeText(this, feedback, Toast.LENGTH_SHORT).show();
+    public void showFailMsg() {    //显示注册失败的消息
+        Toast.makeText(this, "注册失败，该用户已存在！", Toast.LENGTH_SHORT).show();
     }
 }

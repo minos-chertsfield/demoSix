@@ -1,10 +1,16 @@
 package com.yuntang.juney.demoone.presenter;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.yuntang.juney.demoone.bean.User;
+import com.yuntang.juney.demoone.model.ILoginModel;
 import com.yuntang.juney.demoone.model.LoginModel;
 import com.yuntang.juney.demoone.view.LoginView;
+import com.yuntang.juney.demoone.view.RegisterActivity;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by admini
@@ -28,6 +34,32 @@ public class LoginPresenter {   //登录提供器
     }
 
     public void doLogin() {    //登录
+        user = new User();
+        user.setUid(loginView.getUid());
+        user.setPassword(loginView.getPassword());
+        System.out.println(user.getUid());
 
+        loginModel.doLogin(user, new ILoginModel.onLoginListener() {
+            @Override
+            public void loginSuccess() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        loginView.showSuccessMsg();
+                    }
+                });
+            }
+
+            @Override
+            public void loginFail() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        loginView.showFailMsg();     //显示失败信息
+                    }
+                });
+            }
+        });
     }
+
 }

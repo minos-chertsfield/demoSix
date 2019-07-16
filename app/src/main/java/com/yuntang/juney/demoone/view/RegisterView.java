@@ -18,8 +18,8 @@ public interface RegisterView {   //注册功能接口
     String getEmail();
     String getHeadLink();
 
-    void showSuccessMsg(User user);     //显示注册成功信息
-    void showFailMsg(String feedback);      //显示注册失败信息
+    void showSuccessMsg();     //显示注册成功信息
+    void showFailMsg();      //显示注册失败信息
 
 
 

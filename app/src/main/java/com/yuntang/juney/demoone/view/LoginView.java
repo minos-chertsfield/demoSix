@@ -11,7 +11,7 @@ public interface LoginView {   //登录功能接口
     String getUid();
     String getPassword();
 
-    void showSuccessMsg(User user);
-    void showFailMsg(String feedback);
+    void showSuccessMsg();
+    void showFailMsg();
 
 }

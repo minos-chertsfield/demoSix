@@ -18,8 +18,8 @@ public interface IRegisterModel {    //注册模型接口
 
     interface onRegisterListener {      //监听注册反馈
 
-        void regiterSuccess(String feedback);     //注册成功
-        void registerFail(String feedback);       //注册失败
+        void registerSuccess();     //注册成功
+        void registerFail();       //注册失败
     }
 
 }

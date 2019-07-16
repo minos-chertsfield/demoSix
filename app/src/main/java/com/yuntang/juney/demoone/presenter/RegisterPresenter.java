@@ -56,23 +56,23 @@ public class RegisterPresenter {     //注册提供器
 
         registerModel.doRegister(user, new RegisterModel.onRegisterListener() {
             @Override
-            public void regiterSuccess(final String feedback) {   //注册成功
-            handler.post(new Runnable() {
-                @Override
-                public void run() {     //注册成功后进行处理
-                    registerView.showSuccessMsg(user);
-                }
-            });
+            public void registerSuccess() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        registerView.showSuccessMsg();    //显示注册成功的信息
+                    }
+                });
             }
 
             @Override
-            public void registerFail(final String feedback) {    //注册失败
-            handler.post(new Runnable() {
-                @Override
-                public void run() {        //注册失败后进行处理
-                    registerView.showFailMsg(feedback);
-                }
-            });
+            public void registerFail() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        registerView.showFailMsg();     //显示注册失败的信息
+                    }
+                });
             }
         });
     }

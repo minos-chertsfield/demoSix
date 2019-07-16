@@ -6,6 +6,7 @@ import com.yuntang.juney.demoone.utils.RegisterApiService;
 
 import java.io.IOException;
 
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -23,6 +24,7 @@ public class RegisterModel implements IRegisterModel{    //注册模型接口实
 
     public static String BASE_URL = "http://192.168.180.247:8080/";    //服务器地址
     Retrofit retrofit;
+    private String feedback;    //获取服务器的反馈
 
     @Override
     public void doRegister(final User user, final onRegisterListener onRegisterListener) {
@@ -36,16 +38,22 @@ public class RegisterModel implements IRegisterModel{    //注册模型接口实
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
-                RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), obj);   //统一编码
+                RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), obj);   //统一编码
                 RegisterApiService registerApiService = retrofit.create(RegisterApiService.class);    //调用注册的请求api
-                retrofit2.Call<ResponseBody> data = registerApiService.getMessage(body);
+                Call<ResponseBody> data = registerApiService.getMessage(body);
                 data.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
-                            if (response.body().string() != null){
-                                System.out.println(response.body().string());    //输出服务器返回信息
-                            }
+                                feedback = response.body().string();
+                                System.out.println("返回值：" + feedback + "\n响应码：" + response.code());    //输出服务器返回信息
+                                if (feedback.equals("success")) {
+                                    onRegisterListener.registerSuccess();
+                                    System.out.println("成功");
+                                } else if (feedback.equals("fail")) {
+                                    onRegisterListener.registerFail();
+                                    System.out.println("失败");
+                                }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

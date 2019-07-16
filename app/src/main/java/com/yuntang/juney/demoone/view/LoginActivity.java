@@ -1,10 +1,12 @@
 package com.yuntang.juney.demoone.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yuntang.juney.demoone.R;
@@ -19,6 +21,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     private EditText uidLogin;
     private EditText passwordLogin;
     private Button btnLogin;
+    private TextView gotoRegister;
+    private TextView forgetPassword;
     LoginPresenter loginPresenter;
 
 
@@ -37,9 +41,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         uidLogin = (EditText) findViewById(R.id.uidLogin);
         passwordLogin = (EditText) findViewById(R.id.passwordLogin);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        gotoRegister = (TextView) findViewById(R.id.gotoRegister);
+        forgetPassword = (TextView) findViewById(R.id.forgetPassword);
+        gotoRegister.setOnClickListener(this);
+        forgetPassword.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
 
-
+        loginPresenter = new LoginPresenter(this);
     }
 
     @Override
@@ -53,17 +61,28 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     }
 
     @Override
-    public void showSuccessMsg(User user) {   //登录成功信息
-        Toast.makeText(this, user.getUid(), Toast.LENGTH_SHORT).show();
+    public void showSuccessMsg() {   //登录成功信息
+        Toast.makeText(this, "登录成功！", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showFailMsg(String feedback) {    //登录失败信息
-        Toast.makeText(this, feedback, Toast.LENGTH_SHORT).show();
+    public void showFailMsg() {    //登录失败信息
+        Toast.makeText(this, "登录失败！", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnLogin:
+                loginPresenter.doLogin();
+                break;
+            case R.id.gotoRegister:        //前往注册
+                Intent intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.forgetPassword:    //忘记密码
 
+                break;
+        }
     }
 }
