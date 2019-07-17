@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 
+import com.google.gson.Gson;
 import com.yuntang.juney.demoone.bean.User;
 import com.yuntang.juney.demoone.model.ILoginModel;
 import com.yuntang.juney.demoone.model.LoginModel;
@@ -22,7 +23,6 @@ public class LoginPresenter {   //登录提供器
     private Handler handler;
     private LoginModel loginModel;
     private LoginView loginView;
-
     /**
      *
      * @param loginView 登录视图
@@ -37,15 +37,19 @@ public class LoginPresenter {   //登录提供器
         user = new User();
         user.setUid(loginView.getUid());
         user.setPassword(loginView.getPassword());
+        user.setMac(loginView.getMac());
         System.out.println(user.getUid());
 
         loginModel.doLogin(user, new ILoginModel.onLoginListener() {
             @Override
-            public void loginSuccess() {
+            public void loginSuccess(final String feedback) {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        System.out.println("存储：" + feedback);
+                        loginView.sharedPreferencesStore("User", feedback);
                         loginView.showSuccessMsg();
+                        loginView.gotoMain();
                     }
                 });
             }

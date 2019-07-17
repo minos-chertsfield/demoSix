@@ -8,10 +8,13 @@ import com.yuntang.juney.demoone.bean.User;
  */
 public interface LoginView {   //登录功能接口
 
+    String getMac();
     String getUid();
     String getPassword();
 
+
     void showSuccessMsg();
     void showFailMsg();
-
+    void sharedPreferencesStore(String title, String content);
+    void gotoMain();
 }

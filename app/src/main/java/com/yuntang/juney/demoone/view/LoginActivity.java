@@ -1,6 +1,8 @@
 package com.yuntang.juney.demoone.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,15 +11,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.yuntang.juney.demoone.R;
 import com.yuntang.juney.demoone.bean.User;
 import com.yuntang.juney.demoone.presenter.LoginPresenter;
+import com.yuntang.juney.demoone.utils.Mac;
 
 /**
  * 用户登录功能
  */
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener{
 
+    SharedPreferences preferences = null;
     private EditText uidLogin;
     private EditText passwordLogin;
     private Button btnLogin;
@@ -51,6 +56,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     }
 
     @Override
+    public String getMac() {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Mac mac = new Mac();
+        return mac.GenerateRandom(preferences);
+    }
+
+    @Override
     public String getUid() {    //从当前视图获取用户名
         return uidLogin.getText().toString().trim();
     }
@@ -71,6 +83,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     }
 
     @Override
+    public void sharedPreferencesStore(String title, String content) {
+        preferences = getSharedPreferences("user",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(title, content);
+        editor.commit();
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnLogin:
@@ -84,5 +104,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
 
                 break;
         }
+    }
+
+    public void gotoMain() {      //前往主页
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

@@ -6,4 +6,6 @@ package com.yuntang.juney.demoone.view;
  */
 public interface MainView {    //主页功能接口
 
+
+
 }

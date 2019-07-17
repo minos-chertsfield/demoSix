@@ -52,10 +52,10 @@ public class LoginModel implements ILoginModel{     //登录模型接口实现�
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
                             feedback = response.body().string();
+                            System.out.println("登录响应：" + feedback);
                             if (feedback != "fail") {
-                                User user = gson.fromJson(feedback, User.class);    //获取用户的信息
-                                onLoginListener.loginSuccess();
-                            } else {
+                                onLoginListener.loginSuccess(feedback);
+                            } else if (feedback.equals("fail")) {
                                 onLoginListener.loginFail();
                             }
                         } catch (IOException e) {
