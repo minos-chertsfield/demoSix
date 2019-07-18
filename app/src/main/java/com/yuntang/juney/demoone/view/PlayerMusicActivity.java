@@ -25,8 +25,8 @@ import com.yuntang.juney.demoone.service.MusicService;
 public class PlayerMusicActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
 
-    Handler handler;
-    private MusicBinder binder;
+    Handler handler = new Handler();
+    private MusicService.MusicBinder binder;
     private Button previous;
     private ToggleButton PlayOrPause;
     private Button next;
@@ -55,8 +55,8 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
 
         PlayOrPause.setOnCheckedChangeListener(this);      //播放/暂停监听
 
-        seekBar.setOnSeekBarChangeListener(this);       //进度条监听
-        handler = new Handler();
+//        seekBar.setOnSeekBarChangeListener(this);       //进度条监听
+
 
     }
 
@@ -76,8 +76,25 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            binder = (MusicBinder) iBinder;
-            seekBar.setMax(seekBar.getProgress());
+            binder = (MusicService.MusicBinder) iBinder;
+            seekBar.setMax(binder.getProgress());
+
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    binder.seekProgress(seekBar.getProgress());
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
 
             handler.post(runnable);
         }
@@ -127,7 +144,11 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
+        handler.removeCallbacks(runnable);
+        binder.closeMedia();
         unbindService(connection);     //解除服务绑定
+
     }
 }

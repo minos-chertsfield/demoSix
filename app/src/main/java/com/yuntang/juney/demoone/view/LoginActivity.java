@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         loginPresenter = new LoginPresenter(this);
     }
 
+
     @Override
     public String getMac() {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
