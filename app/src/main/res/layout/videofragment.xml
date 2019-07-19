@@ -15,6 +15,7 @@
 
         <Button
             android:id="@+id/stop"
+            android:text="停止"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -27,6 +28,7 @@
 
         <Button
             android:id="@+id/share"
+            android:text="分享"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

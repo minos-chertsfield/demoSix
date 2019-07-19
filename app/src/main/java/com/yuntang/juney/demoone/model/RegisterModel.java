@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RegisterModel implements IRegisterModel{    //注册模型接口实现类
 
-    public static String BASE_URL = "http://192.168.180.247:8080/";    //服务器地址
+    public static String BASE_URL = "http://116.62.23.56/";    //服务器地址
     Retrofit retrofit;
     private String feedback;    //获取服务器的反馈
 

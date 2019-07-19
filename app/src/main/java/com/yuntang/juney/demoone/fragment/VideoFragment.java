@@ -1,5 +1,6 @@
 package com.yuntang.juney.demoone.fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,6 +43,7 @@ public class VideoFragment extends Fragment implements View.OnClickListener, Com
 
         super.onStart();
         initViews();
+        initData();
 
     }
 
@@ -68,8 +70,17 @@ public class VideoFragment extends Fragment implements View.OnClickListener, Com
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.stop:
+
                 break;
             case R.id.share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                // 比如发送文本形式的数据内容
+                // 指定发送的内容
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "http://116.62.23.56/slaver_demo2/video/sj.mp4");
+                // 指定发送内容的类型
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, "分享至"));
                 break;
         }
     }
@@ -78,8 +89,10 @@ public class VideoFragment extends Fragment implements View.OnClickListener, Com
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
         if (b) {
+            videoView.start();
             System.out.println("播放");
         } else {
+            videoView.pause();
             System.out.println("暂停");
         }
     }

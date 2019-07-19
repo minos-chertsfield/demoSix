@@ -28,7 +28,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class LoginModel implements ILoginModel{     //登录模型接口实现类
 
     SharedPreferences preferences = null;   //本地存储先置空
-    public static String BASE_URL = "http://192.168.180.247:8080/";    //服务器地址
+    public static String BASE_URL = "http://116.62.23.56/";    //服务器地址
     Retrofit retrofit;
     private String feedback;    //获取服务器的反馈
 
@@ -43,6 +43,7 @@ public class LoginModel implements ILoginModel{     //登录模型接口实现�
                 retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
+//                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                         .build();
                 RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), obj);   //统一编码
                 LoginApiService loginApiService = retrofit.create(LoginApiService.class);    //调用登录的请求api
