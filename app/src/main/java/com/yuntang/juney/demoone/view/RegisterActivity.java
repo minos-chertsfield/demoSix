@@ -2,6 +2,8 @@ package com.yuntang.juney.demoone.view;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +16,10 @@ import android.widget.Toast;
 import com.yuntang.juney.demoone.R;
 import com.yuntang.juney.demoone.bean.User;
 import com.yuntang.juney.demoone.presenter.RegisterPresenter;
+import com.yuntang.juney.demoone.utils.ImageCompress;
 import com.yuntang.juney.demoone.utils.Mac;
+
+import java.util.List;
 
 /**
  * 用户注册功能
@@ -56,15 +61,22 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
         email = (EditText) findViewById(R.id.email);
         address = (EditText) findViewById(R.id.address);
         btnRegister = (Button) findViewById(R.id.btnRegister);
-        btnRegister.setOnClickListener(this);
-
+        btnRegister.setOnClickListener(this);     //注册按钮点击
+        headLink.setOnClickListener(this);       //头像按钮点击
         registerPresenter = new RegisterPresenter(this);
     }
 
 
     @Override
     public void onClick(View view) {   //点击事件
-        registerPresenter.doRegister();
+        switch (view.getId()) {
+            case R.id.btnRegister:
+                registerPresenter.doRegister();
+                break;
+            case R.id.headLink:
+
+                break;
+        }
     }
 
     @Override
@@ -109,9 +121,14 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
         return email.getText().toString().trim();
     }
 
+    public void uploadImage(List<Bitmap> images) {       //图片压缩上传方法
+        ImageCompress compress = new ImageCompress();
+        compress.Compress(images, this, "http://116.62.23.56/slaver_demo2/images/");
+    }
+
     @Override
-    public String getHeadLink() {   //从当前视图获取用户
-        return null;
+    public Bitmap getHeadLink() {   //从当前视图获取头像（位图文件）
+        return ((BitmapDrawable) headLink.getBackground()).getBitmap();
     }
 
     @Override

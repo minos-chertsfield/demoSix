@@ -8,6 +8,9 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -18,6 +21,7 @@ import android.widget.ToggleButton;
 import com.yuntang.juney.demoone.R;
 import com.yuntang.juney.demoone.service.MusicBinder;
 import com.yuntang.juney.demoone.service.MusicService;
+import com.yuntang.juney.demoone.widget.CircleImageView;
 
 /**
  * 音乐播放器活动
@@ -31,13 +35,27 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
     private ToggleButton PlayOrPause;
     private Button next;
     private SeekBar seekBar;
+    private CircleImageView imgAlbum;
+    private Animation rotate;
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        imgAlbum.clearAnimation();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_music);
         initViews();
+
+
+        rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_anim);//旋转动画
+        LinearInterpolator lin = new LinearInterpolator();
+        rotate.setInterpolator(lin);
+
 
         Intent intent = new Intent(this, MusicService.class);
         bindService(intent, connection, BIND_AUTO_CREATE);
@@ -49,7 +67,7 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
         PlayOrPause = (ToggleButton) findViewById(R.id.PlayOrPause);
         next = (Button) findViewById(R.id.next);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-
+        imgAlbum = (CircleImageView) findViewById(R.id.imgAlbum);    //音乐专辑图片
         previous.setOnClickListener(this);     //上一首监听
         next.setOnClickListener(this);      //下一首监听
 
@@ -112,9 +130,11 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
         if (b) {      //播放动作
             System.out.println("播放");
             binder.playMusic();
+            imgAlbum.setAnimation(rotate);
         } else {     //暂停动作
             System.out.println("暂停");
             binder.pauseMusic();
+            imgAlbum.clearAnimation();
         }
     }
 

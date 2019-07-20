@@ -25,10 +25,10 @@ public class ImageCompress {      //图片压缩工具类
      */
     public void Compress(List<Bitmap> images, Context context, String path) {
 
-        Luban.with(context)
+        Luban.with(context)         //传入上下文对象
                 .ignoreBy(100)      //100K以下不进行压缩
-                .load(images)
-                .setTargetDir(path)
+                .load(images)       //加载图片列表
+                .setTargetDir(path)      //目标路径
                 .setCompressListener(new OnCompressListener() {
                     @Override
                     public void onStart() {

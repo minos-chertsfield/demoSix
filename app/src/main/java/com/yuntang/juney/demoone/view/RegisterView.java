@@ -1,5 +1,7 @@
 package com.yuntang.juney.demoone.view;
 
+import android.graphics.Bitmap;
+
 import com.yuntang.juney.demoone.bean.User;
 
 /**
@@ -16,7 +18,7 @@ public interface RegisterView {   //注册功能接口
     String getMobile();
     String getBirth();
     String getEmail();
-    String getHeadLink();
+    Bitmap getHeadLink();
 
     void showSuccessMsg();     //显示注册成功信息
     void showFailMsg();      //显示注册失败信息

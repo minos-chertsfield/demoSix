@@ -1,16 +1,20 @@
 package com.yuntang.juney.demoone.presenter;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Handler;
+import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 import com.yuntang.juney.demoone.bean.User;
 import com.yuntang.juney.demoone.model.RegisterModel;
+import com.yuntang.juney.demoone.utils.ImageCompress;
 import com.yuntang.juney.demoone.utils.RegisterApiService;
 import com.yuntang.juney.demoone.view.RegisterView;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -51,7 +55,7 @@ public class RegisterPresenter {     //注册提供器
         user.setEmail(registerView.getEmail());     //从视图层获取电子邮箱
         user.setMobile(registerView.getMobile());    //从视图层获取电话号码
         user.setAddress(registerView.getAddress());     //从视图层获取地址
-        user.setHeadLink(registerView.getHeadLink());    //从视图层获取图像数据
+//        user.setHeadLink(registerView.getHeadLink());    //从视图层获取图像数据
 
 
         registerModel.doRegister(user, new RegisterModel.onRegisterListener() {
