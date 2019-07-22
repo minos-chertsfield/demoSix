@@ -37,7 +37,7 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
     private SeekBar seekBar;
     private CircleImageView imgAlbum;
     private Animation rotate;
-
+    private ServiceConnection connection;
 
     @Override
     protected void onPause() {
@@ -50,15 +50,43 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_music);
         initViews();
-
+        setConnection();
 
         rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_anim);//旋转动画
         LinearInterpolator lin = new LinearInterpolator();
         rotate.setInterpolator(lin);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(PlayerMusicActivity.this, MusicService.class);
+                bindService(intent, connection, BIND_AUTO_CREATE);
+            }
+        }).start();
 
-        Intent intent = new Intent(this, MusicService.class);
-        bindService(intent, connection, BIND_AUTO_CREATE);
+
+
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
     }
 
     public void initViews() {
@@ -90,45 +118,54 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    public void setConnection() {
+        connection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
 
-    private ServiceConnection connection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            binder = (MusicService.MusicBinder) iBinder;
-            seekBar.setMax(binder.getProgress());
+                binder = (MusicService.MusicBinder) iBinder;
+                seekBar.setMax(binder.getProgress());
 
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    binder.seekProgress(seekBar.getProgress());
-                }
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        binder.seekProgress(seekBar.getProgress());
+                    }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
 
-                }
+                    }
 
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
 
-                }
-            });
-
-            handler.post(runnable);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-
-        }
+                    }
+                });
+                handler.post(runnable);
 
 
-    };
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName componentName) {
+
+            }
+
+
+        };
+    }
+
+
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         if (b) {      //播放动作
             System.out.println("播放");
+
+
+
+
             binder.playMusic();
             imgAlbum.setAnimation(rotate);
         } else {     //暂停动作
@@ -158,7 +195,7 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
         @Override
         public void run() {
             seekBar.setProgress(binder.getPlayPosition());
-            handler.postDelayed(runnable, 1000);
+            handler.postDelayed(runnable, 2000);
         }
     };
 

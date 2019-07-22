@@ -51,6 +51,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         gotoRegister.setOnClickListener(this);
         forgetPassword.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //自动从SharedPreferences中获取用户名和密码填入
+        uidLogin.setText(preferences.getString("uid", ""));
+        passwordLogin.setText(preferences.getString("password", ""));
 
         loginPresenter = new LoginPresenter(this);
     }
@@ -91,11 +95,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         editor.commit();
     }
 
+    public void rememberInfo() {      //将登录完成后的数据存入本地
+        SharedPreferences.Editor editor_remember = preferences.edit();
+        editor_remember.putString("uid", uidLogin.getText().toString().trim());
+        editor_remember.putString("password", passwordLogin.getText().toString().trim());
+        editor_remember.apply();
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnLogin:
                 loginPresenter.doLogin();
+                rememberInfo();
                 break;
             case R.id.gotoRegister:        //前往注册
                 Intent intent = new Intent(this, RegisterActivity.class);

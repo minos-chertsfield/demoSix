@@ -1,28 +1,36 @@
 package com.yuntang.juney.demoone.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.FrameMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.yuntang.juney.demoone.R;
+import com.yuntang.juney.demoone.adapter.MusicAdapter;
 import com.yuntang.juney.demoone.bean.User;
 
 /**
  * Created by admini
  * on 2019/7/17
  */
-public class MineFragment extends Fragment {    //我的碎片
+public class MineFragment extends Fragment implements AdapterView.OnItemClickListener {    //我的碎片
 
     private ListView listView;      //列表
     private String[] info;       //列表项
+
+    FragmentTransaction ft;    //碎片事务
 
 
     @Nullable
@@ -44,6 +52,7 @@ public class MineFragment extends Fragment {    //我的碎片
         listView = (ListView) getView().findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item, info);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
     }
 
     public void initData() {     //初始化数据
@@ -63,4 +72,30 @@ public class MineFragment extends Fragment {    //我的碎片
 
     }
 
+
+
+    @SuppressLint("ResourceType")
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {    //条目点击事件
+        switch (position) {
+            case 0:
+                break;
+            case 5:
+                System.out.println("本地音乐");
+                replaceFragment(new LocalFragment());
+                break;
+            case 6:
+                System.out.println("我的收藏");
+                replaceFragment(new FavoriteFragment());
+                break;
+        }
+
+    }
+
+
+    public void replaceFragment(Fragment fragment) {     //替换当前碎片
+        ft = getChildFragmentManager().beginTransaction();     //开始事务
+        ft.replace(R.id.mine, fragment);    //替换碎片
+        ft.commit();    //事务提交
+    }
 }

@@ -16,10 +16,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static android.content.Context.MODE_PRIVATE;
+
 
 /**
  * Created by admini
@@ -51,6 +50,7 @@ public class LoginModel implements ILoginModel{     //登录模型接口实现�
                 data.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
                         try {
                             feedback = response.body().string();
                             System.out.println("登录响应：" + feedback);

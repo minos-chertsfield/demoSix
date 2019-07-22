@@ -21,7 +21,6 @@ public class MusicService extends Service {      //音乐播放服务
 
     private NotificationManager notificationManager;
     String path = "http://116.62.23.56/slaver_demo2/music/a.mp3";
-    private MusicBinder binder = new MusicBinder();
     public MediaPlayer player = new MediaPlayer();      //实例化媒体播放器
 
     @Override
@@ -32,12 +31,13 @@ public class MusicService extends Service {      //音乐播放服务
     }
 
     public MusicService() {
-        initDatas(path);
+        initData(path);
     }
 
     @Override
     public IBinder onBind(Intent intent) {     //绑定事件
         // TODO: Return the communication channel to the service.
+        MusicBinder binder = new MusicBinder();
         return binder;
     }
 
@@ -100,7 +100,7 @@ public class MusicService extends Service {      //音乐播放服务
     }
 
 
-    private void initDatas(String url) {      //初始化数据
+    private void initData(String url) {      //初始化数据
         try {
             player.setDataSource(url);     //设置数据源
             player.prepare();

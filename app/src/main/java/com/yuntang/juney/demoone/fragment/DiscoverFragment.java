@@ -24,7 +24,7 @@ import java.util.List;
  * Created by admini
  * on 2019/7/17
  */
-public class DiscoverFragment extends Fragment implements MusicAdapter.OnItemClickListener {    //发现碎片
+public class DiscoverFragment extends Fragment implements MusicAdapter.OnItemClickListener, View.OnClickListener {    //发现碎片
 
     private Button play;
     private MusicInfo[] musicInfos;      //声明音乐的数组
@@ -43,14 +43,10 @@ public class DiscoverFragment extends Fragment implements MusicAdapter.OnItemCli
     public void onStart() {
 
         super.onStart();
-        play = (Button) getView().findViewById(R.id.play);
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PlayerMusicActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        initViews();
+
+
 
 
 
@@ -64,10 +60,19 @@ public class DiscoverFragment extends Fragment implements MusicAdapter.OnItemCli
         recyclerViewMusic.setLayoutManager(layoutManager);
         adapter = new MusicAdapter(musicInfoList);
         adapter.setOnItemClickListener(this);
+
+        play = (Button) getView().findViewById(R.id.play);
+        play.setOnClickListener(this);
     }
 
     @Override
     public void onItemClick(View view, int position) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(getActivity(), PlayerMusicActivity.class);
+        startActivity(intent);
     }
 }
