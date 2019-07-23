@@ -18,7 +18,6 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -43,11 +42,10 @@ public class MainModel implements IMainModel{
                 retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
-                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                         .build();
                 RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), obj);
                 MusicApi api = retrofit.create(MusicApi.class);
-                api.getMessage(body)
+                api.getData("music")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<ResponseBody>() {

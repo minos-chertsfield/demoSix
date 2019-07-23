@@ -12,7 +12,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.FieldMap;
 
@@ -32,7 +31,6 @@ public class GetRequest extends AppCompatActivity {    //获取请求
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://116.62.23.56")    //设置网络请求的Url
                 .addConverterFactory(GsonConverterFactory.create())     //设置使用Gson的解析器（需要添加相应的依赖）
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())   //添加RxJava的支持
                 .build();
 
         //创建网络接口的实例

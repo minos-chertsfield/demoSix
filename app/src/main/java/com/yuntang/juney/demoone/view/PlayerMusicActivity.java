@@ -28,7 +28,7 @@ import com.yuntang.juney.demoone.widget.CircleImageView;
  */
 public class PlayerMusicActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
-
+    String url;
     Handler handler = new Handler();
     private MusicService.MusicBinder binder;
     private Button previous;
@@ -52,6 +52,7 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
         initViews();
         setConnection();
 
+        url = getIntent().getStringExtra("url");
         rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_anim);//旋转动画
         LinearInterpolator lin = new LinearInterpolator();
         rotate.setInterpolator(lin);
@@ -65,6 +66,7 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
                     e.printStackTrace();
                 }
                 Intent intent = new Intent(PlayerMusicActivity.this, MusicService.class);
+                intent.putExtra("url", url);
                 bindService(intent, connection, BIND_AUTO_CREATE);
             }
         }).start();

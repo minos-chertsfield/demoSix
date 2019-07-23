@@ -67,7 +67,8 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
             "出生日期    " + user.getBirth(),
             "",
             "本地音乐"  ,
-            "我的收藏"
+            "我的收藏",
+            "设置"
         };
 
     }

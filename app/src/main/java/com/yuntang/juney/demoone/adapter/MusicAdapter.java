@@ -92,7 +92,9 @@ public class MusicAdapter extends RecyclerView.Adapter<com.yuntang.juney.demoone
         ViewGroup.LayoutParams params =  holder.itemView.getLayoutParams();//得到item的LayoutParams布局参数
         holder.itemView.setLayoutParams(params);//把params设置给itemView布局
         MusicInfo musicInfo = mMusicList.get(position);
-
+        holder.musicName.setText(musicInfo.getTitle());
+        holder.artist.setText(musicInfo.getArtist());
+        System.out.println(musicInfo.getTitle());
 
 
 
@@ -103,13 +105,14 @@ public class MusicAdapter extends RecyclerView.Adapter<com.yuntang.juney.demoone
             public void onClick(View v) {    //利用定义方法获取点击位置
                 int position = holder.getLayoutPosition();
                 mOnItemClickListener.onItemClick(holder.itemView, position);
+                System.out.println();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mMusicList.size();
     }
 
 

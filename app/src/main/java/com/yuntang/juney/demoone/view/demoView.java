@@ -8,4 +8,6 @@ import com.yuntang.juney.demoone.contract.demoContract;
  */
 public class demoView implements demoContract.View {
 
+
+
 }

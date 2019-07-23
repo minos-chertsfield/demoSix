@@ -10,7 +10,7 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.RequiresApi;
+
 
 import com.yuntang.juney.demoone.R;
 
@@ -18,9 +18,11 @@ import java.io.IOException;
 
 public class MusicService extends Service {      //音乐播放服务
 
-
+    String url;
     private NotificationManager notificationManager;
-    String path = "http://116.62.23.56/slaver_demo2/music/a.mp3";
+//    String path = "http://116.62.23.56/slaver_demo2/music/a.mp3";
+
+
     public MediaPlayer player = new MediaPlayer();      //实例化媒体播放器
 
     @Override
@@ -31,13 +33,16 @@ public class MusicService extends Service {      //音乐播放服务
     }
 
     public MusicService() {
-        initData(path);
+
     }
 
     @Override
     public IBinder onBind(Intent intent) {     //绑定事件
         // TODO: Return the communication channel to the service.
         MusicBinder binder = new MusicBinder();
+        url = intent.getStringExtra("url");
+        System.out.println("url:" + url);
+        initData(url);
         return binder;
     }
 
