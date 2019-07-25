@@ -1,4 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
+
+
+MobSDK {
+    appKey "替换为mob官方申请的appkey"
+    appSecret "替换为mob官方申请的appkey对应的appSecret"
+    SMSSDK {}
+}
+
 
 android {
     compileSdkVersion 28
@@ -39,6 +48,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
     //ijkPlayer
 //    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'

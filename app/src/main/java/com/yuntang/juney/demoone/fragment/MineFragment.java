@@ -89,6 +89,9 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
                 System.out.println("我的收藏");
                 replaceFragment(new FavoriteFragment());
                 break;
+            case 7:
+                System.out.println("设置");
+                replaceFragment(new SettingsFragment());
         }
 
     }

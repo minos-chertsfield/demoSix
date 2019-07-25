@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MainModel implements IMainModel{
 
-    public static String BASE_URL = "http://116.62.23.56/";    //服务器地址
+    public static String BASE_URL = "http://192.168.180.120:8080/";    //服务器地址
     Retrofit retrofit;
 
     @Override

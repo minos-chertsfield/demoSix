@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginModel implements ILoginModel{     //登录模型接口实现类
 
     SharedPreferences preferences = null;   //本地存储先置空
-    public static String BASE_URL = "http://116.62.23.56/";    //服务器地址
+    public static String BASE_URL = "http://192.168.180.120:8080/";    //服务器地址
     Retrofit retrofit;
     private String feedback;    //获取服务器的反馈
 
