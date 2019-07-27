@@ -50,7 +50,6 @@ public class LoginModel implements ILoginModel{     //登录模型接口实现�
                 data.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                         try {
                             feedback = response.body().string();
                             System.out.println("登录响应：" + feedback);

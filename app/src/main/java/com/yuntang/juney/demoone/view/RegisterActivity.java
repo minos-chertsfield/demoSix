@@ -124,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
     public void uploadImage(List<Bitmap> images) {       //图片压缩上传方法
         ImageCompress compress = new ImageCompress();
         compress.Compress(images, this, "http://116.62.23.56/slaver_demo2/images/");
+        //TODO 需完成上传
     }
 
     @Override

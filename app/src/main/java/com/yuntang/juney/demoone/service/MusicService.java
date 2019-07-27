@@ -38,7 +38,7 @@ public class MusicService extends Service {      //音乐播放服务
 
     @Override
     public IBinder onBind(Intent intent) {     //绑定事件
-        // TODO: Return the communication channel to the service.
+
         MusicBinder binder = new MusicBinder();
         url = intent.getStringExtra("url");
         System.out.println("url:" + url);
@@ -73,14 +73,14 @@ public class MusicService extends Service {      //音乐播放服务
         }
 
         public void previousMusic() {     //上一首音乐
-
+            //TODO
         }
 
         public void nextMusic() {      //下一首音乐
-
+            //TODO
         }
 
-        public void closeMedia() {
+        public void closeMedia() {       //关闭并释放资源
             if (player != null) {
                 player.stop();
                 player.release();
@@ -88,15 +88,15 @@ public class MusicService extends Service {      //音乐播放服务
         }
 
 
-        public int getProgress() {
+        public int getProgress() {        //获取当前进度
             return player.getDuration();
         }
 
-        public int getPlayPosition() {
+        public int getPlayPosition() {      //获取当前播放位置
             return player.getCurrentPosition();
         }
 
-        public void seekProgress(int sec) {
+        public void seekProgress(int sec) {       //跟踪当前播放位置
            player.seekTo(sec);
         }
 
