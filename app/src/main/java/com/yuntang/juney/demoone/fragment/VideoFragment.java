@@ -63,7 +63,7 @@ public class VideoFragment extends Fragment implements View.OnClickListener, Com
 
     public void initData() {
 
-        videoView.setVideoURI(Uri.parse("http://116.62.23.56/slaver_demo2/video/sj.mp4"));
+        videoView.setVideoURI(Uri.parse("http://116.62.23.56/video/sj.mp4"));
     }
 
     @Override
@@ -77,7 +77,7 @@ public class VideoFragment extends Fragment implements View.OnClickListener, Com
                 sendIntent.setAction(Intent.ACTION_SEND);
                 // 比如发送文本形式的数据内容
                 // 指定发送的内容
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "http://116.62.23.56/slaver_demo2/video/sj.mp4");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "http://116.62.23.56/video/sj.mp4");
                 // 指定发送内容的类型
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, "分享至"));

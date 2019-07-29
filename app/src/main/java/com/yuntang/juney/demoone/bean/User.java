@@ -1,5 +1,7 @@
 package com.yuntang.juney.demoone.bean;
 
+import java.util.List;
+
 /**
  * Created by admini
  * on 2019/7/12
@@ -16,6 +18,16 @@ public class User {    //用户类
     private String email;    //用户电子邮箱
     private String headLink;    //用户头像链接
     private String mobile;      //用户手机号码
+
+    public List<String> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<String> friends) {
+        this.friends = friends;
+    }
+
+    private List<String> friends;     //好友用户名列表
 
     public String getMobile() {
         return mobile;

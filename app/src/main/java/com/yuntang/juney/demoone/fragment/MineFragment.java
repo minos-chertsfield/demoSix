@@ -65,7 +65,7 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
             "手机号码    " + user.getMobile(),
             "电子邮箱    " + user.getEmail(),
             "出生日期    " + user.getBirth(),
-            "",
+            "我的好友",
             "本地音乐"  ,
             "我的收藏",
             "设置"
@@ -80,6 +80,10 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {    //条目点击事件
         switch (position) {
             case 0:
+                break;
+            case 4:
+                System.out.println("我的好友");
+                replaceFragment(new FriendFragment());
                 break;
             case 5:
                 System.out.println("本地音乐");

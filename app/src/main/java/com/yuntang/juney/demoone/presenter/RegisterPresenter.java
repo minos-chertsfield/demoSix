@@ -55,7 +55,7 @@ public class RegisterPresenter {     //注册提供器
         user.setEmail(registerView.getEmail());     //从视图层获取电子邮箱
         user.setMobile(registerView.getMobile());    //从视图层获取电话号码
         user.setAddress(registerView.getAddress());     //从视图层获取地址
-//        user.setHeadLink(registerView.getHeadLink());    //从视图层获取图像数据
+        user.setHeadLink(registerView.getHeadLink());    //从视图层获取头像数据
 
 
         registerModel.doRegister(user, new RegisterModel.onRegisterListener() {

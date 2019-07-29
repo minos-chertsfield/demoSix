@@ -42,6 +42,7 @@ public class StartActivity extends AppCompatActivity implements Animation.Animat
     private void redirect() {     //重定向方法
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private CountDownTimer countDownTimer = new CountDownTimer(5000 + 1000, 1000) {     //1s间隔

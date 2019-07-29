@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"
@@ -10,14 +12,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.yuntang.juney.demoone.widget.CircleImageView
+        <com.shehuan.niv.NiceImageView
             android:id="@+id/headLink"
             android:layout_centerHorizontal="true"
             android:layout_marginVertical="30dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="center"
-            android:background="@drawable/default_head"/>
+            android:src="@drawable/default_head"
+            app:border_color="@color/colorPink"
+            app:border_width="4dp"
+            app:is_circle="true"/>
 
         <EditText
             android:id="@+id/uid"
