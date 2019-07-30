@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--TODO: 设置界面 -->
-    <TextView
+    <ListView
+        android:id="@+id/listSettings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="设置" />
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

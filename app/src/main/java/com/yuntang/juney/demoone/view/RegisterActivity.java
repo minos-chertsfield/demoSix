@@ -26,11 +26,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.shehuan.niv.NiceImageView;
 import com.yuntang.juney.demoone.R;
 import com.yuntang.juney.demoone.presenter.RegisterPresenter;
 import com.yuntang.juney.demoone.utils.ImageCompress;
 import com.yuntang.juney.demoone.utils.Mac;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,7 +45,7 @@ import java.util.zip.GZIPOutputStream;
 public class RegisterActivity extends AppCompatActivity implements RegisterView, View.OnClickListener {
 
     SharedPreferences preferences = null;    //声明SharedPreferences的对象
-    private NiceImageView headLink;
+    private ImageView headLink;
     private EditText uid;
     private EditText password;
     private EditText realName;
@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
      */
     private void initViews() {
 
-        headLink = (NiceImageView) findViewById(R.id.headLink);
+        headLink = (ImageView) findViewById(R.id.headLink);
         uid = (EditText) findViewById(R.id.uid);
         password = (EditText) findViewById(R.id.password);
         realName = (EditText) findViewById(R.id.realName);
@@ -226,14 +226,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                         startActivityForResult(intent, TAKE_PHOTO);
                         break;
-//                        Intent openCameraIntent = new Intent(
-//                                MediaStore.ACTION_IMAGE_CAPTURE);
-//                        tempUri = Uri.fromFile(new File(Environment
-//                                .getExternalStorageDirectory(), "image.jpg"));
-//                        // 指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
-//                        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
-//                        startActivityForResult(openCameraIntent, TAKE_PICTURE);
-//                        break;
                 }
             }
         });
@@ -300,6 +292,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView,
     private void displayImage(String imagePath) {
         if (imagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            System.out.println(bitmap);
             Glide.with(this).load(bitmap).into(headLink);
             //FIXME 图片显示白屏
         } else {

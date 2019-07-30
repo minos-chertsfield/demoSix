@@ -13,15 +13,13 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.yuntang.juney.demoone.R;
-import com.yuntang.juney.demoone.service.MusicBinder;
 import com.yuntang.juney.demoone.service.MusicService;
-import com.yuntang.juney.demoone.widget.CircleImageView;
+
+import org.raphets.roundimageview.RoundImageView;
 
 /**
  * 音乐播放器活动
@@ -35,7 +33,7 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
     private ToggleButton PlayOrPause;
     private Button next;
     private SeekBar seekBar;
-    private CircleImageView imgAlbum;
+    private RoundImageView imgAlbum;
     private Animation rotate;
     private ServiceConnection connection;
 
@@ -97,7 +95,7 @@ public class PlayerMusicActivity extends AppCompatActivity implements View.OnCli
         PlayOrPause = (ToggleButton) findViewById(R.id.PlayOrPause);
         next = (Button) findViewById(R.id.next);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        imgAlbum = (CircleImageView) findViewById(R.id.imgAlbum);    //音乐专辑图片
+        imgAlbum = (RoundImageView) findViewById(R.id.imgAlbum);    //音乐专辑图片
         previous.setOnClickListener(this);     //上一首监听
         next.setOnClickListener(this);      //下一首监听
 

@@ -12,16 +12,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.shehuan.niv.NiceImageView
+        <ImageView
             android:id="@+id/headLink"
             android:layout_centerHorizontal="true"
-            android:layout_marginVertical="30dp"
+            android:layout_marginTop="30dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/default_head"
-            app:border_color="@color/colorPink"
-            app:border_width="4dp"
-            app:is_circle="true"/>
+            android:src="@drawable/default_head"/>
 
         <EditText
             android:id="@+id/uid"

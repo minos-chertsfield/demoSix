@@ -6,6 +6,13 @@
     tools:context=".fragment.FriendFragment"
     android:background="@color/colorWhite">
 
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
     <ImageButton
         android:id="@+id/addFriend"
         android:layout_width="50dp"
