@@ -6,7 +6,9 @@ package com.yuntang.juney.demoone.bean;
  */
 public class Friend {    //好友信息
 
+
     private String uid;   //用户名
+    private String headLink;   //头像
     private String address;   //地址
     private String birthday;    //生日
     private String grade;    //等级
@@ -71,5 +73,13 @@ public class Friend {    //好友信息
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getHeadLink() {
+        return headLink;
+    }
+
+    public void setHeadLink(String headLink) {
+        this.headLink = headLink;
     }
 }
