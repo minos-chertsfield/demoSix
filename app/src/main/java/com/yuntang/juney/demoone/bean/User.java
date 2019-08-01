@@ -18,16 +18,15 @@ public class User {    //用户类
     private String email;    //用户电子邮箱
     private String headLink;    //用户头像链接
     private String mobile;      //用户手机号码
+    private String friends;
 
-    public List<String> getFriends() {
+    public String getFriends() {
         return friends;
     }
 
-    public void setFriends(List<String> friends) {
+    public void setFriends(String friends) {
         this.friends = friends;
     }
-
-    private List<String> friends;     //好友用户名列表
 
     public String getMobile() {
         return mobile;

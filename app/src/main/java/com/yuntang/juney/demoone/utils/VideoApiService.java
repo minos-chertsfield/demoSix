@@ -9,11 +9,11 @@ import retrofit2.http.POST;
 
 /**
  * Created by admini
- * on 2019/7/13
+ * on 2019/8/1
  */
-public interface LoginApiService {    //登陆服务接口
+public interface VideoApiService {   //视频服务接口
 
     @Headers({"Content-Type: application/json", "Accept: application/json"})    //文件头
-    @POST("Music/loginService")
+    @POST("Music/videoService")
     Call<ResponseBody> getMessage(@Body RequestBody info);   //返回的请求体
 }
