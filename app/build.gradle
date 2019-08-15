@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'com.tencent.tinker.patch'
 
 MobSDK {
     appKey "替换为mob官方申请的appkey"
@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.airbnb.android:lottie:2.6.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'org.raphets:roundimageview:1.2.0'
     implementation 'top.zibin:Luban:1.1.8'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
@@ -55,6 +55,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    compileOnly('com.tencent.tinker:tinker-android-anno:1.9.1')
+    //tinker的核心库
+    implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
     //ijkPlayer
     //    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     //    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
