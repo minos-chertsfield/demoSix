@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.tencent.tinker.patch'
+//apply plugin: 'com.tencent.tinker.patch'
+//apply from: 'tinkerpatch.gradle'
 
 MobSDK {
     appKey "替换为mob官方申请的appkey"
@@ -56,9 +57,9 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
-    compileOnly('com.tencent.tinker:tinker-android-anno:1.9.1')
-    //tinker的核心库
-    implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
+//    compileOnly('com.tencent.tinker:tinker-android-anno:1.9.1')
+//    //tinker的核心库
+//    implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
     //ijkPlayer
     //    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     //    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
